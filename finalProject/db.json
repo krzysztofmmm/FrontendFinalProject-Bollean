@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "aaca"
+    },
+    {
+      "id": "6be9"
+    },
+    {
+      "id": "a35c"
+    },
+    {
+      "id": "4dca",
+      "firstName": "Annemoon",
+      "lastName": "de Groen",
+      "bio": "",
+      "email": "annemoon@example.com",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "571d",
+      "firstName": "Annemoon",
+      "lastName": "de Groen",
+      "bio": "",
+      "email": "annemoon@example.com",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "255e",
+      "firstName": "Annemoon",
+      "lastName": "de Groen",
+      "bio": "",
+      "email": "annemoon@example.com",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "5ec2",
+      "firstName": "Orsino",
+      "lastName": "Duke",
+      "bio": "",
+      "email": "DukeOfIllyria@example.com",
+      "password": "WOWEENHEELGEHEIMWACHTWOORD!!!",
+      "role": "user"
+    },
+    {
+      "id": "77e6",
+      "firstName": "Orsino",
+      "lastName": "Duke",
+      "bio": "",
+      "email": "DukeOfIllyria@example.com",
+      "password": "WOWEENHEELGEHEIMWACHTWOORD!!!",
+      "role": "user"
+    },
+    {
+      "id": "0c4a",
+      "firstName": "Viola",
+      "lastName": "Night",
+      "bio": "",
+      "email": "Viola@example.com",
+      "password": "Secret",
+      "role": "user"
+    },
+    {
+      "id": "dd6a",
+      "firstName": "Annemoon",
+      "lastName": "aldkssaklj",
+      "bio": "",
+      "email": "skldfnakldf@sakd.com",
+      "password": "jksksdk",
+      "role": "user"
+    }
+  ]
+}
