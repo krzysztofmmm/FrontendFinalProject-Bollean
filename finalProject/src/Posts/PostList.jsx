@@ -8,12 +8,11 @@ function PostList() {
 
     //When the user is not logged in, go to the log-in page
     useEffect(() => {
-        if (!user) { navigate("/login") }
+        if (user.id === -1) { navigate("/login") }
     }, [])
 
-    console.log(user)
     return (
-        <h1>PostList</h1>
+        <h1>PostList {user.firstName}</h1>
     )
 }
 

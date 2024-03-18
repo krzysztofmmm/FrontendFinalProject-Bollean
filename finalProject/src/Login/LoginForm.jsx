@@ -4,7 +4,7 @@ import { LoginUser } from "../Services/ConnectToDB"
 import { useNavigate } from "react-router-dom"
 
 const INITIAL_FORM = {
-    firstName: "",
+    email: "",
     password: ""
 }
 
@@ -12,33 +12,42 @@ const INITIAL_FORM = {
 
 function LoginForm() {
     const [login, setLogin] = useState({ ...INITIAL_FORM })
+    const [error, setError] = useState(false)
     const { setUser } = useContext(userContext)
     const navigate = useNavigate()
 
     const handleChange = (event) => {
         login[event.target.name] = event.target.value;
         setLogin({ ...login })
+        setError(false)
     }
 
     const handleSubmit = event => {
         event.preventDefault();
-        const output = LoginUser()
-        //Check whether user exists in database
-        setUser({ ...output })
-        //setUser to user from the database
-        //Navigate to posts 
-        navigate("/")
+        LoginUser(login.email, login.password).then((response) => {
+            if (response) {
+                setUser({ ...response })
+                navigate("/")
+            }
+            else {
+                setError(true);
+            }
+        })
+
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <p>Login</p>
+            {error && <p className="Error">Email or password is invalid</p>}
             <div>
                 <label>
-                    Firstname
+                    Email
                     <input
-                        name="firstName"
-                        value={login.firstName}
+                        name="email"
+                        type="email"
+                        value={login.email}
+                        required
                         onChange={handleChange}>
                     </input>
                 </label>
@@ -50,6 +59,7 @@ function LoginForm() {
                         name="password"
                         type="password"
                         value={login.password}
+                        required
                         onChange={handleChange}>
                     </input>
                 </label>
