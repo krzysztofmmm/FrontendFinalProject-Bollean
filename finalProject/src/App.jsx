@@ -6,6 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import RegisterForm from './Login/RegisterForm'
 import LoginForm from './Login/LoginForm'
 import PostList from './Posts/PostList'
+import HomePage from './Layout/Homepage'
 
 const userContext = createContext()
 const INITIAL_USER = {
@@ -16,8 +17,16 @@ const INITIAL_USER = {
   role: 1,
   bio: ""
 }
+const TEST_USER = {
+  email: "juliet@example.com",
+  firstName: "Juliet",
+  lastName: "Capuleti",
+  id: 1,
+  role: 1,
+  bio: "Whisper Rose "
+}
 function App() {
-  const [user, setUser] = useState(INITIAL_USER)
+  const [user, setUser] = useState(TEST_USER)
   const navigate = useNavigate()
 
 
@@ -27,7 +36,7 @@ function App() {
       setUser: setUser
     }}>
       <Routes>
-        <Route path="/" element={<PostList />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/post/:postId" element={<h1>One specific post</h1>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
