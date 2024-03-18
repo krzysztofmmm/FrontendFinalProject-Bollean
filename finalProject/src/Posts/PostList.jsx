@@ -6,7 +6,7 @@ import PostListItem from "./PostListItem";
 import '../Stylesheets/PostList.css'
 
 
-function PostList() {
+function PostList({ setCurrentPost }) {
     const { user } = useContext(userContext)
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
@@ -26,7 +26,7 @@ function PostList() {
         <div className="postList">
             {posts.map((post) => {
                 return (
-                    <PostListItem post={post} />
+                    <PostListItem post={post} setCurrentPost={setCurrentPost} />
                 )
             })}
         </div>

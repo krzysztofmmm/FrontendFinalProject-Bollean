@@ -6,13 +6,16 @@ const INITIAL_FORM = {
     title: "",
     content: ""
 }
-function AddPostForm({ currentPost, setCurrentPost }) {
+function AddPostForm({ setCurrentPost }) {
     const { user } = useContext(userContext)
     const [form, setForm] = useState({ ...INITIAL_FORM })
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submitted: ", event)
+        if (!form.content) {
+            return
+        }
         CreatePost(user.id, form.title, form.content)
         setCurrentPost(null)
     }
@@ -32,6 +35,7 @@ function AddPostForm({ currentPost, setCurrentPost }) {
                 name="content"
                 value={form.content}
                 onChange={handleChange}
+                required
             /></label>
             <input
                 type="submit"

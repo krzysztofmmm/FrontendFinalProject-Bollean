@@ -69,4 +69,8 @@ function CreatePost(userId, title, content) {
     fetch(`${URL}/posts`, PostOptions);
 }
 
-export { RegisterUser, LoginUser, GetAllPosts, CreatePost }
+function GetUserById(userId) {
+    return fetch(`${URL}/users/${userId}`).then((response) => { return response.json() })
+}
+
+export { RegisterUser, LoginUser, GetAllPosts, CreatePost, GetUserById }

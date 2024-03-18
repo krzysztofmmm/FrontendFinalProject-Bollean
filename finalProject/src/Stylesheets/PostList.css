@@ -9,8 +9,9 @@
 
 .selectedPost {
     position: relative;
-    top: 200px;
-    border: 1px solid black
+    border: 1px solid black;
+    padding-left: 20px;
+    margin-top: 50px;
 }
 
 .homePage {

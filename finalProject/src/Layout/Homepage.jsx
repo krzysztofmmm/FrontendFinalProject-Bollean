@@ -20,7 +20,7 @@ function HomePage() {
             <Header />
             <div className="homePage">
                 <h1>Filters</h1>
-                <PostList />
+                <PostList setCurrentPost={setCurrentPost} />
                 <div>
                     <button onClick={() => setCurrentPost("new")}>Add Post</button>
                     <SelectedPost currentPost={currentPost} setCurrentPost={setCurrentPost} />
