@@ -8,9 +8,16 @@ import LoginForm from './Login/LoginForm'
 import PostList from './Posts/PostList'
 
 const userContext = createContext()
-
+const INITIAL_USER = {
+  email: "",
+  firstName: "",
+  lastName: "",
+  id: -1,
+  role: 1,
+  bio: ""
+}
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(INITIAL_USER)
   const navigate = useNavigate()
 
 
