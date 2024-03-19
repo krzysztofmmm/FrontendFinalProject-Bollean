@@ -4,7 +4,7 @@ import { postContext } from "../Layout/Homepage"
 
 function PostListItem({ post }) {
     const [user, setUser] = useState(null)
-    const { setCurrentPost } = useContext(postContext)
+    const { setCurrentPost } = useContext(postContext) || {}
 
     useEffect(() => {
         GetUserById(post.userId).then((response) => {

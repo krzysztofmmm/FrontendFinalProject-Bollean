@@ -7,6 +7,7 @@ import RegisterForm from './Login/RegisterForm'
 import LoginForm from './Login/LoginForm'
 import PostList from './Posts/PostList'
 import HomePage from './Layout/Homepage'
+import ProfilePage from './UserProfile/ProfilePage'
 
 const userContext = createContext()
 const INITIAL_USER = {
@@ -33,7 +34,7 @@ function App() {
         <Route path="/post/:postId" element={<h1>One specific post</h1>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
-        <Route path="/profile/:userId" element={<h1>User information about a specific user</h1>} />
+        <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/profile/edit" element={<h1>Edit your own profile</h1>} />
       </Routes>
     </userContext.Provider>
