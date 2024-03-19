@@ -98,6 +98,15 @@ function UpdateUser(userId, firstName, lastName, bio) {
         .then((response) => { return response.json(); })
 }
 
+function DeletePost(postId) {
+    const requestOptions = {
+        method: "DELETE"
+    };
+    fetch(`${URL}/posts/${postId}`, requestOptions)
+
+}
+
+
 export {
     RegisterUser,
     LoginUser,
@@ -105,5 +114,6 @@ export {
     CreatePost,
     GetUserById,
     GetPostsByUser,
-    UpdateUser
+    UpdateUser,
+    DeletePost
 }

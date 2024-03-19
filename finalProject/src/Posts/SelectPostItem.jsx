@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { GetUserById } from "../Services/ConnectToDB"
+import { DeletePost, GetUserById } from "../Services/ConnectToDB"
+import { postContext } from "../Layout/Homepage"
 
-function SelectPostItem({ currentPost }) {
-
+function SelectPostItem() {
+    const { currentPost, posts, setPosts, setCurrentPost } = useContext(postContext)
     if (localStorage.getItem("user") == currentPost.userId) {
 
     }
@@ -26,13 +27,16 @@ function SelectPostItem({ currentPost }) {
     }
 
     const handleDelete = (event) => {
-
+        posts.splice(posts.indexOf(currentPost), 1)
+        setPosts([...posts])
+        DeletePost(currentPost.id)
+        setCurrentPost(null)
     }
     return (
         <>
             {showOptions && <div className="options" onMouseLeave={() => { setShowOptions(false) }}>
                 <p>Edit</p>
-                <p>Delete</p>
+                <p onClick={handleDelete}>Delete</p>
             </div>}
 
             <div className='selectedPost'>

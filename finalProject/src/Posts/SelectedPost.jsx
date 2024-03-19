@@ -23,7 +23,7 @@ function SelectedPost() {
         )
     }
     else {
-        return (<SelectPostItem currentPost={currentPost} />)
+        return (<SelectPostItem />)
     }
 }
 
