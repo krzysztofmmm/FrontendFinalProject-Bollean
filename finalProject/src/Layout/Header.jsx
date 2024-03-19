@@ -8,8 +8,8 @@ function Header() {
     const navigate = useNavigate()
     return (
         <div className="header">
-            <h1>Whisper Rose</h1>
-            <img src="https://purepng.com/public/uploads/large/purepng.com-roseroseflowerpink-961524679718edfbk.png"></img>
+            <h1 onClick={() => { navigate("/") }} >Whisper Rose</h1>
+            <img onClick={() => { navigate("/") }} src="https://purepng.com/public/uploads/large/purepng.com-roseroseflowerpink-961524679718edfbk.png"></img>
             <button onClick={() => { navigate(`/profile/${user.id}`) }}>{user.firstName}</button>
         </div>
     )

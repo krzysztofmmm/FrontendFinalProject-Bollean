@@ -4,6 +4,8 @@ import AddPostForm from './AddPostForm'
 import PostListItem from './PostListItem'
 import { GetUserById } from '../Services/ConnectToDB'
 import { postContext } from '../Layout/Homepage'
+import { useNavigate } from 'react-router-dom'
+import SelectPostItem from './SelectPostItem'
 
 
 function SelectedPost() {
@@ -21,24 +23,7 @@ function SelectedPost() {
         )
     }
     else {
-        const [author, setAuthor] = useState(null)
-
-        useEffect(() => {
-            GetUserById(currentPost.userId).then((response) => {
-                setAuthor(response)
-            })
-        }, [currentPost])
-
-        if (!author) {
-            return <h1>Loading...</h1>
-        }
-        return (
-            <div className='selectedPost'>
-                <h1>{currentPost.title} </h1>
-                <p>{author.firstName} {author.lastName}</p>
-                <p>{currentPost.content}</p>
-            </div>
-        )
+        return (<SelectPostItem currentPost={currentPost} />)
     }
 }
 
