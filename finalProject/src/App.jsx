@@ -17,16 +17,9 @@ const INITIAL_USER = {
   role: 1,
   bio: ""
 }
-const TEST_USER = {
-  email: "juliet@example.com",
-  firstName: "Juliet",
-  lastName: "Capuleti",
-  id: 1,
-  role: 1,
-  bio: "Whisper Rose "
-}
+
 function App() {
-  const [user, setUser] = useState(TEST_USER)
+  const [user, setUser] = useState(INITIAL_USER)
   const navigate = useNavigate()
 
 

@@ -20,3 +20,8 @@
   background: lightpink;
   place-items: center;
 }
+
+.addPostButton {
+  background: pink;
+  border: 1px purple solid;
+}

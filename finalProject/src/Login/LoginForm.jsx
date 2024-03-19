@@ -27,6 +27,7 @@ function LoginForm() {
         LoginUser(login.email, login.password).then((response) => {
             if (response) {
                 setUser({ ...response })
+                localStorage.setItem("user", response.id)
                 navigate("/")
             }
             else {

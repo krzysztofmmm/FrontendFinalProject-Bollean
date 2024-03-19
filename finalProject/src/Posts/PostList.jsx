@@ -4,17 +4,12 @@ import { useNavigate } from "react-router-dom"
 import { GetAllPosts } from "../Services/ConnectToDB";
 import PostListItem from "./PostListItem";
 import '../Stylesheets/PostList.css'
+import { postContext } from "../Layout/Homepage";
 
 
-function PostList({ setCurrentPost }) {
-    const { user } = useContext(userContext)
-    const navigate = useNavigate();
-    const [posts, setPosts] = useState([]);
-    //When the user is not logged in, go to the log-in page
-    useEffect(() => {
-        if (user.id === -1) { navigate("/login") }
-    }, [])
+function PostList() {
 
+    const { posts, setPosts } = useContext(postContext)
     //Get all posts from the API
     useEffect(() => {
         GetAllPosts().then((result) => setPosts(result))
@@ -26,7 +21,7 @@ function PostList({ setCurrentPost }) {
         <div className="postList">
             {posts.map((post) => {
                 return (
-                    <PostListItem post={post} setCurrentPost={setCurrentPost} />
+                    <PostListItem post={post} />
                 )
             })}
         </div>

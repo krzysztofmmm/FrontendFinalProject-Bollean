@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { GetUserById } from "../Services/ConnectToDB"
+import { postContext } from "../Layout/Homepage"
 
-function PostListItem({ post, setCurrentPost }) {
-    console.log(post)
+function PostListItem({ post }) {
     const [user, setUser] = useState(null)
+    const { setCurrentPost } = useContext(postContext)
 
     useEffect(() => {
         GetUserById(post.userId).then((response) => {
-            console.log(response)
             setUser(response)
         })
     }, [post])
