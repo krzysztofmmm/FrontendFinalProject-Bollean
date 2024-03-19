@@ -32,10 +32,15 @@ function SelectPostItem() {
         DeletePost(currentPost.id)
         setCurrentPost(null)
     }
+
+    const handleEdit = (event) => {
+        console.log("EDIT POST")
+        setCurrentPost({ edit: true, ...currentPost })
+    }
     return (
         <>
             {showOptions && <div className="options" onMouseLeave={() => { setShowOptions(false) }}>
-                <p>Edit</p>
+                <p onClick={handleEdit}>Edit</p>
                 <p onClick={handleDelete}>Delete</p>
             </div>}
 

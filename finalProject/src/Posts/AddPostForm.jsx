@@ -14,7 +14,6 @@ function AddPostForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Submitted: ", event)
         if (!form.content) {
             return
         }
