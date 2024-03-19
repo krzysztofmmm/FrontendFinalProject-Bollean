@@ -27,6 +27,7 @@ function LoginForm() {
         LoginUser(login.email, login.password).then((response) => {
             if (response) {
                 setUser({ ...response })
+                localStorage.setItem("user", response.id)
                 navigate("/")
             }
             else {
@@ -37,7 +38,7 @@ function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginForm">
             <p>Login</p>
             {error && <p className="Error">Email or password is invalid</p>}
             <div>

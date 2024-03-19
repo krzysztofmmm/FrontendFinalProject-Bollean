@@ -27,7 +27,7 @@ function RegisterForm() {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="registerForm">
             <p>Register</p>
             <div>
                 <label> First name:

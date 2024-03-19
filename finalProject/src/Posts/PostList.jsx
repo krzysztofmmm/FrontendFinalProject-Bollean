@@ -1,18 +1,30 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { userContext } from "../App"
 import { useNavigate } from "react-router-dom"
+import { GetAllPosts } from "../Services/ConnectToDB";
+import PostListItem from "./PostListItem";
+import '../Stylesheets/PostList.css'
+import { postContext } from "../Layout/Homepage";
+
 
 function PostList() {
-    const { user } = useContext(userContext)
-    const navigate = useNavigate();
 
-    //When the user is not logged in, go to the log-in page
+    const { posts, setPosts } = useContext(postContext)
+    //Get all posts from the API
     useEffect(() => {
-        if (user.id === -1) { navigate("/login") }
+        GetAllPosts().then((result) => setPosts(result))
     }, [])
 
+
+
     return (
-        <h1>PostList {user.firstName}</h1>
+        <div className="postList">
+            {posts.map((post) => {
+                return (
+                    <PostListItem post={post} />
+                )
+            })}
+        </div>
     )
 }
 
