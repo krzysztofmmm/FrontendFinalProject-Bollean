@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GetUserById } from "../Services/ConnectToDB"
 import Header from "../Layout/Header"
 import UserInfo from "./UserInfo"
@@ -9,10 +9,13 @@ import '../Stylesheets/ProfilePage.css'
 function ProfilePage() {
     const { userId } = useParams()
     const [shownUser, setShownUser] = useState(null)
+    const navigate = useNavigate()
 
     //Get the right user from the database
     //TODO: Check if user exists
     useEffect(() => {
+        if (!localStorage.getItem("user")) { navigate("/login") }
+
         GetUserById(userId).then((response) => {
             setShownUser(response)
         })

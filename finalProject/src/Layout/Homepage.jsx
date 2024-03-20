@@ -17,12 +17,16 @@ function HomePage() {
     //Get user from localstorage, and set user to correct user. If user doesn't
     //exist, go to the login page
     useEffect(() => {
-        GetUserById(localStorage.getItem("user")).then(
-            (response) => {
-                if (!response) { navigate("/login") }
-                else { setUser({ ...response }) }
-            })
-    }, [])
+        if (!localStorage.getItem("user")) { navigate("/login") }
+        else {
+            GetUserById(localStorage.getItem("user")).then(
+                (response) => {
+                    if (!response) { navigate("/login") }
+                    else { setUser({ ...response }) }
+                })
+        }
+    }
+        , [])
 
     return (
         <>
