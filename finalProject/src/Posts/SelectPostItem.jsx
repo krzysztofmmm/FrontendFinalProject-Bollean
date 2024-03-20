@@ -2,6 +2,9 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { DeletePost, GetUserById } from "../Services/ConnectToDB"
 import { postContext } from "../Layout/Homepage"
+import AddCommentForm from "./Comments/AddCommentForm"
+import CommentList from "./Comments/CommentList"
+
 
 function SelectPostItem() {
     const { currentPost, posts, setPosts, setCurrentPost } = useContext(postContext)
@@ -47,9 +50,10 @@ function SelectPostItem() {
             <div className='selectedPost'>
                 <h1>{currentPost.title} {localStorage.getItem("user") == currentPost.userId && <div className="optionButton" onClick={EditOrDelete}>&#8942; </div>} </h1>
 
-                <p onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> {author.firstName} {author.lastName}</p>
+                <p onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> by {author.firstName} {author.lastName}</p>
                 <p>{currentPost.content}</p>
             </div >
+            <CommentList post={currentPost} />
         </>
     )
 }
