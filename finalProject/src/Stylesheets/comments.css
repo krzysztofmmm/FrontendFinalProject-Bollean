@@ -1,0 +1,19 @@
+.comment {
+    border: purple solid 1px;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.comment .userName {
+    font-size: large;
+    font-weight: 500;
+    width: fit-content;
+    border-bottom: purple 1px solid;
+}
+
+.commentsList {
+    height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

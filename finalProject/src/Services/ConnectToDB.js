@@ -125,6 +125,28 @@ function EditPost(postId, title, content) {
         .then((response) => { return response.json(); })
 }
 
+function CreateComment(userId, postId, content) {
+    const bodyPayload = {
+        userId: userId,
+        postId: postId,
+        content: content
+    }
+    const PostOptions = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+            "mode": "no-cors"
+        },
+        body: JSON.stringify(bodyPayload)
+    }
+    return fetch(`${URL}/comments`, PostOptions).then((response) => { return response.json(); });
+}
+
+function GetCommentsByPost(postId) {
+    return fetch(`${URL}/comments/post/${postId}`).then((response) => { if (response.ok) return response.json(); else { return [] } })
+}
 
 export {
     RegisterUser,
@@ -135,5 +157,7 @@ export {
     GetPostsByUser,
     UpdateUser,
     DeletePost,
-    EditPost
+    EditPost,
+    CreateComment,
+    GetCommentsByPost
 }

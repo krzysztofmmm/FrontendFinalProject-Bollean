@@ -1,11 +1,8 @@
 import { createContext, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import RegisterForm from './Login/RegisterForm'
 import LoginForm from './Login/LoginForm'
-import PostList from './Posts/PostList'
 import HomePage from './Layout/Homepage'
 import ProfilePage from './UserProfile/ProfilePage'
 
@@ -21,8 +18,6 @@ const INITIAL_USER = {
 
 function App() {
   const [user, setUser] = useState(INITIAL_USER)
-  const navigate = useNavigate()
-
 
   return (
     <userContext.Provider value={{
