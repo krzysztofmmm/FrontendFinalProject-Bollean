@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { GetUserById } from "../Services/ConnectToDB"
+import { CountLikes, GetUserById } from "../Services/ConnectToDB"
 import { postContext } from "../Layout/Homepage"
 
 function PostListItem({ post }) {
@@ -9,7 +9,7 @@ function PostListItem({ post }) {
     useEffect(() => {
         GetUserById(post.userId).then((response) => {
             setUser(response)
-        })
+        });
     }, [post])
 
     if (!user) {
@@ -25,6 +25,7 @@ function PostListItem({ post }) {
             <p className="authorName">{user.firstName} says:</p>
             {post.title && <p className="postTitle">{post.title}</p>}
             <p className="postContent">{post.content}</p>
+            <p>{post.likes} Likes, {post.commentCount} comments</p>
         </div>
 
     )

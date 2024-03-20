@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { CountLikes, HasUserLikes, ToggleLike } from "../Services/ConnectToDB"
+import { CountCommentLikes, CountLikes, HasUserLikes, ToggleLike } from "../Services/ConnectToDB"
 import { userContext } from "../App"
 
 function Likes({ postId, commentId }) {
@@ -10,17 +10,33 @@ function Likes({ postId, commentId }) {
     useEffect(() => {
         HasUserLikes(user.id, postId, commentId)
             .then((response) => {
-                console.log(response)
                 setIsLiked(response)
             });
-        CountLikes(postId).then((response) => {
-            setHasLikes(response.likeCount)
-        })
-    }, [postId, isLiked])
+        updateCount()
+
+    }, [postId])
+
+    const updateCount = () => {
+        if (commentId) {
+            CountCommentLikes(commentId).then((response) => {
+                setHasLikes(response.likeCount)
+            })
+        }
+        else {
+            CountLikes(postId).then((response) => {
+                setHasLikes(response)
+            })
+        }
+    }
 
     const Toggle = (event) => {
-        setIsLiked(!isLiked)
-        ToggleLike(user.id, postId, commentId)
+        ToggleLike(user.id, postId, commentId).then(() => {
+            updateCount()
+            setIsLiked(!isLiked)
+        }
+        )
+
+
     }
 
     return (

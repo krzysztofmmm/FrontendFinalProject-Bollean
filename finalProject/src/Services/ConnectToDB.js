@@ -169,12 +169,18 @@ function ToggleLike(userId, postId, commentId) {
 }
 
 function CountLikes(postId) {
-    return fetch(`${URL}/likes/post/${postId}`)
-        .then((response) => { return response.json(); })
+    return fetch(`${URL}/likes/count?postId=${postId}`)
+        .then((response) => { if (response.ok) return response.json(); else { return 0 } })
+}
+
+function CountCommentLikes(commentId) {
+    return fetch(`${URL}/likes/comment/${commentId}`)
+        .then((response) => { if (response.ok) return response.json(); else { return 0 } })
 }
 
 function HasUserLikes(userId, postId, commentId) {
-    return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}`).then((response) => { return response.json() })
+    if (!commentId) return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}`).then((response) => { return response.json() })
+    else return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}&commentId=${commentId}`).then((response) => { if (response.ok) return response.json(); else { return false } })
 }
 
 export {
@@ -191,5 +197,6 @@ export {
     GetCommentsByPost,
     ToggleLike,
     CountLikes,
-    HasUserLikes
+    HasUserLikes,
+    CountCommentLikes
 }
