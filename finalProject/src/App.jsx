@@ -22,11 +22,11 @@ function App() {
   return (
     <userContext.Provider value={{
       user: user,
-      setUser: setUser
+      setUser: setUser,
+      INITIAL_USER: INITIAL_USER
     }}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/post/:postId" element={<h1>One specific post</h1>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/profile/:userId" element={<ProfilePage />} />
