@@ -13,7 +13,7 @@
 }
 
 .commentsList {
-    height: 450px;
+    height: 40vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
