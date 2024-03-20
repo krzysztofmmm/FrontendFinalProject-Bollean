@@ -15,6 +15,7 @@ function CommentList({ post }) {
     }, [post])
 
     const addComment = (comment) => {
+        if (!comment.content) return
         comments.unshift(comment)
         setComments([...comments])
     }
