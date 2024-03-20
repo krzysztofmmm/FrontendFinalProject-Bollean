@@ -1,0 +1,31 @@
+.profilePage {
+    position: relative;
+    top: 100px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.aboutUser {
+    background: lightgrey;
+}
+
+.edit {
+    padding-top: 30px;
+}
+
+.userPostList {
+    position: relative;
+    height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.bio {
+    background: white;
+    width: 295px;
+    height: 130px;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+
+}

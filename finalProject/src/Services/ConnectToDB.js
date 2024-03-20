@@ -73,4 +73,37 @@ function GetUserById(userId) {
     return fetch(`${URL}/users/${userId}`).then((response) => { return response.json() })
 }
 
-export { RegisterUser, LoginUser, GetAllPosts, CreatePost, GetUserById }
+function GetPostsByUser(userId) {
+    return fetch(`${URL}/posts/user/${userId}`).then((response) => { return response.json() })
+}
+
+function UpdateUser(userId, firstName, lastName, bio) {
+    const payload = {
+        id: userId,
+        firstName: firstName,
+        lastName: lastName,
+        bio: bio
+    }
+    const postRequestOptions = {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+            "mode": "no-cors"
+        },
+        body: JSON.stringify(payload)
+    }
+    return fetch(`${URL}/users/users/${userId}`, postRequestOptions)
+        .then((response) => { return response.json(); })
+}
+
+export {
+    RegisterUser,
+    LoginUser,
+    GetAllPosts,
+    CreatePost,
+    GetUserById,
+    GetPostsByUser,
+    UpdateUser
+}
