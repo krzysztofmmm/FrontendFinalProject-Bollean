@@ -98,6 +98,34 @@ function UpdateUser(userId, firstName, lastName, bio) {
         .then((response) => { return response.json(); })
 }
 
+function DeletePost(postId) {
+    const requestOptions = {
+        method: "DELETE"
+    };
+    fetch(`${URL}/posts/${postId}`, requestOptions)
+
+}
+
+function EditPost(postId, title, content) {
+    const payload = {
+        title: title,
+        content: content,
+    }
+    const postRequestOptions = {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+            "mode": "no-cors"
+        },
+        body: JSON.stringify(payload)
+    }
+    return fetch(`${URL}/posts/${postId}`, postRequestOptions)
+        .then((response) => { return response.json(); })
+}
+
+
 export {
     RegisterUser,
     LoginUser,
@@ -105,5 +133,7 @@ export {
     CreatePost,
     GetUserById,
     GetPostsByUser,
-    UpdateUser
+    UpdateUser,
+    DeletePost,
+    EditPost
 }

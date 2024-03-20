@@ -57,3 +57,24 @@
     padding: 0px 30px;
     width: fit-content;
 }
+
+.options {
+    border: solid 1px black;
+    background: white;
+    z-index: 1;
+    position: absolute;
+    top: 50px;
+    width: 100px;
+    right: 0px;
+
+}
+
+.optionButton {
+    position: relative;
+    right: 0px;
+    bottom: 60px;
+    text-align: center;
+    width: 40px;
+    margin-right: 3px;
+    margin-left: auto;
+}
