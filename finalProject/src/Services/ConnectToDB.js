@@ -148,6 +148,35 @@ function GetCommentsByPost(postId) {
     return fetch(`${URL}/comments/post/${postId}`).then((response) => { if (response.ok) return response.json(); else { return [] } })
 }
 
+function ToggleLike(userId, postId, commentId) {
+    const bodyPayload = {
+        userId: userId,
+        postId: postId,
+        commentId: commentId
+    }
+    const PostOptions = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+            "mode": "no-cors"
+        },
+        body: JSON.stringify(bodyPayload)
+    }
+    return fetch(`${URL}/likes/toggle`, PostOptions).then((response) => { return response.json(); });
+
+}
+
+function CountLikes(postId) {
+    return fetch(`${URL}/likes/post/${postId}`)
+        .then((response) => { return response.json(); })
+}
+
+function HasUserLikes(userId, postId, commentId) {
+    return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}`).then((response) => { return response.json() })
+}
+
 export {
     RegisterUser,
     LoginUser,
@@ -159,5 +188,8 @@ export {
     DeletePost,
     EditPost,
     CreateComment,
-    GetCommentsByPost
+    GetCommentsByPost,
+    ToggleLike,
+    CountLikes,
+    HasUserLikes
 }

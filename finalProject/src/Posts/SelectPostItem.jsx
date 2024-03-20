@@ -4,6 +4,7 @@ import { DeletePost, GetUserById } from "../Services/ConnectToDB"
 import { postContext } from "../Layout/Homepage"
 import AddCommentForm from "./Comments/AddCommentForm"
 import CommentList from "./Comments/CommentList"
+import Likes from "./Likes"
 
 
 function SelectPostItem() {
@@ -52,6 +53,7 @@ function SelectPostItem() {
 
                 <p onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> by {author.firstName} {author.lastName}</p>
                 <p>{currentPost.content}</p>
+                <Likes postId={currentPost.id} />
             </div >
             <CommentList post={currentPost} />
         </>
