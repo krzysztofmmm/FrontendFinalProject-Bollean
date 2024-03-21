@@ -43,12 +43,14 @@ function SelectPostItem() {
     }
     return (
         <>
-            {showOptions && <div className="options" onMouseLeave={() => { setShowOptions(false) }}>
+            {showOptions && <div className="options commentOptions" onMouseLeave={() => { setShowOptions(false) }}>
                 <p onClick={handleEdit}>Edit</p>
                 <p onClick={handleDelete}>Delete</p>
             </div>}
 
             <div className='selectedPost'>
+                <p className="date selectedDate">{new Date(currentPost.createdAt).toLocaleString()}</p>
+
                 <h1>{currentPost.title} {localStorage.getItem("user") == currentPost.userId && <div className="optionButton" onClick={EditOrDelete}>&#8942; </div>} </h1>
 
                 <p onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> by {author.firstName} {author.lastName}</p>

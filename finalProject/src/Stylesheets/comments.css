@@ -17,3 +17,15 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.commentDate {
+    position: relative;
+    text-align: right;
+    right: 10px;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.commentOptions {
+    position: absolute;
+}
