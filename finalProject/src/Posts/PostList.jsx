@@ -1,31 +1,38 @@
-import { useContext, useEffect, useState } from "react"
-import { userContext } from "../App"
-import { useNavigate } from "react-router-dom"
+import { useContext, useEffect } from "react";
+import { postContext } from "../Layout/Homepage";
 import { GetAllPosts } from "../Services/ConnectToDB";
 import PostListItem from "./PostListItem";
-import '../Stylesheets/PostList.css'
-import { postContext } from "../Layout/Homepage";
-
+import "../Stylesheets/PostList.css";
 
 function PostList() {
+  const { posts, setPosts, filter, sortBy } = useContext(postContext);
 
-    const { posts, setPosts } = useContext(postContext)
-    //Get all posts from the API
-    useEffect(() => {
-        GetAllPosts().then((result) => setPosts(result))
-    }, [])
+  useEffect(() => {
+    GetAllPosts().then((result) => setPosts(result));
+  }, [setPosts]);
 
-
-
-    return (
-        <div className="postList">
-            {posts.map((post) => {
-                return (
-                    <PostListItem post={post} />
-                )
-            })}
-        </div>
+  const filteredAndSortedPosts = posts
+    .filter(
+      (post) =>
+        post.title.toLowerCase().includes(filter.toLowerCase()) ||
+        post.content.toLowerCase().includes(filter.toLowerCase())
     )
+    .sort((a, b) => {
+      if (sortBy === "lengthAsc") {
+        return a.content.length - b.content.length;
+      } else if (sortBy === "lengthDesc") {
+        return b.content.length - a.content.length;
+      }
+      return 0;
+    });
+
+  return (
+    <div className="postList">
+      {filteredAndSortedPosts.map((post) => (
+        <PostListItem post={post} key={post.id} />
+      ))}
+    </div>
+  );
 }
 
-export default PostList
+export default PostList;
