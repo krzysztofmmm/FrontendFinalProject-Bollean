@@ -1,0 +1,19 @@
+.filters {
+
+    display: grid;
+    grid-template-rows: max-content max-content;
+    position: relative;
+    left: 20px
+}
+
+.filters input {
+    border-color: purple;
+    height: 30px;
+    margin-bottom: 15px
+}
+
+.filters select {
+    border-color: purple;
+    height: 30px;
+    margin-bottom: 15px
+}

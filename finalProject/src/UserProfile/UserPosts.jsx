@@ -6,7 +6,7 @@ function UserPosts({ userId }) {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         GetPostsByUser(userId).then((response) => setPosts(response))
-    }, [])
+    }, [userId])
 
     return (
         <div>

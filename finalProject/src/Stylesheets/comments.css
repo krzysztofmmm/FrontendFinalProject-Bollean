@@ -1,5 +1,7 @@
 .comment {
     border: purple solid 1px;
+    display: grid;
+    grid-template-columns: auto auto;
     padding-left: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
@@ -7,6 +9,7 @@
 
 .comment .userName {
     font-size: large;
+    position: relative;
     font-weight: 500;
     width: fit-content;
     border-bottom: purple 1px solid;
@@ -14,6 +17,25 @@
 
 .commentsList {
     height: 40vh;
+    position: relative;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.commentDate {
+    position: relative;
+    text-align: right;
+    right: 10px;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.commentOptions {
+
+    margin-left: auto;
+}
+
+.commentOptionsButton {
+    position: relative;
+    bottom: 50px;
 }

@@ -4,7 +4,8 @@ import { postContext } from "../Layout/Homepage"
 
 function PostListItem({ post }) {
     const [user, setUser] = useState(null)
-    const { setCurrentPost } = useContext(postContext) || {}
+
+    const { posts, setCurrentPost } = useContext(postContext) || {}
 
 
     useEffect(() => {
@@ -18,15 +19,21 @@ function PostListItem({ post }) {
     }
 
     const setPost = (event) => {
-        setCurrentPost(post)
+        setCurrentPost(post);
+        posts.map((p) => p.selected = false)
+        post.selected = true
+
     }
 
     return (
-        <div className="postListItem" onClick={setPost}>
-            <p className="authorName">{user.firstName} says:</p>
-            {new Date(post.createdAt).toLocaleString()}
+        <div className={`postListItem ${post.selected ? 'selected' : ''}`} onClick={setPost}>
+            <p className="date">{new Date(post.createdAt).toLocaleString()}</p>
+
+
             {post.title && <p className="postTitle">{post.title}</p>}
+            <p className="authorName">By {user.firstName}</p>
             <p className="postContent">{post.content}</p>
+
             <p hidden>{post.likes} Likes, {post.commentCount} comments</p>
         </div>
 
