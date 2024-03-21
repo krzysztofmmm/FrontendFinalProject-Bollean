@@ -148,6 +148,41 @@ function GetCommentsByPost(postId) {
     return fetch(`${URL}/comments/post/${postId}`).then((response) => { if (response.ok) return response.json(); else { return [] } })
 }
 
+function ToggleLike(userId, postId, commentId) {
+    const bodyPayload = {
+        userId: userId,
+        postId: postId,
+        commentId: commentId
+    }
+    const PostOptions = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+            "mode": "no-cors"
+        },
+        body: JSON.stringify(bodyPayload)
+    }
+    return fetch(`${URL}/likes/toggle`, PostOptions).then((response) => { return response.json(); });
+
+}
+
+function CountLikes(postId) {
+    return fetch(`${URL}/likes/count?postId=${postId}`)
+        .then((response) => { if (response.ok) return response.json(); else { return 0 } })
+}
+
+function CountCommentLikes(commentId) {
+    return fetch(`${URL}/likes/comment/${commentId}`)
+        .then((response) => { if (response.ok) return response.json(); else { return 0 } })
+}
+
+function HasUserLikes(userId, postId, commentId) {
+    if (!commentId) return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}`).then((response) => { return response.json() })
+    else return fetch(`${URL}/likes/hasUserLiked?userId=${userId}&postId=${postId}&commentId=${commentId}`).then((response) => { if (response.ok) return response.json(); else { return false } })
+}
+
 export {
     RegisterUser,
     LoginUser,
@@ -159,5 +194,9 @@ export {
     DeletePost,
     EditPost,
     CreateComment,
-    GetCommentsByPost
+    GetCommentsByPost,
+    ToggleLike,
+    CountLikes,
+    HasUserLikes,
+    CountCommentLikes
 }
