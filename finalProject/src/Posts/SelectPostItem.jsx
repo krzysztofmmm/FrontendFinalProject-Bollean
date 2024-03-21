@@ -53,8 +53,9 @@ function SelectPostItem() {
 
                 <h1>{currentPost.title} {localStorage.getItem("user") == currentPost.userId && <div className="optionButton" onClick={EditOrDelete}>&#8942; </div>} </h1>
 
-                <p onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> by {author.firstName} {author.lastName}</p>
                 <p>{currentPost.content}</p>
+                <p className="authorName selectedPostAuthor" onClick={() => { navigate(`/profile/${currentPost.userId}`) }}> by {author.firstName} {author.lastName}</p>
+
                 <Likes postId={currentPost.id} />
             </div >
             <CommentList post={currentPost} />

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { GetUserById } from "../../Services/ConnectToDB"
 import Likes from "../Likes"
+import EditCommentForm from "./EditCommentForm"
 
-function CommentListItem({ comment }) {
+function CommentListItem({ comment, DeleteComment, comments, setComments }) {
 
     const [user, setUser] = useState(null)
     const [showOptions, setShowOptions] = useState(false)
@@ -18,28 +19,42 @@ function CommentListItem({ comment }) {
         return <p>Loading...</p>
     }
     const handleDelete = (event) => {
-        posts.splice(posts.indexOf(currentPost), 1)
-        setPosts([...posts])
-        DeletePost(currentPost.id)
-        setCurrentPost(null)
+        DeleteComment(comment)
+        setShowOptions(false)
     }
 
     const handleEdit = (event) => {
-        console.log("EDIT POST")
-        setCurrentPost({ edit: true, ...currentPost })
+        comment.edit = true;
+        setComments([...comments])
     }
 
+    const Edit = (newContent) => {
+        comment.content = newContent;
+        delete comment.edit
+        setComments([...comments])
+        setShowOptions(false)
+    }
+
+    if (comment.edit) {
+        return (
+            <EditCommentForm currentComment={comment} EditComment={Edit}></EditCommentForm>
+        )
+    }
     return (
         <>
 
-            {showOptions && <div className="options" onMouseLeave={() => { setShowOptions(false) }}>
+            {showOptions && <div className="options commentOptions" onMouseLeave={() => { setShowOptions(false) }}>
                 <p onClick={handleEdit}>Edit</p>
                 <p onClick={handleDelete}>Delete</p>
             </div>}
             <div className="comment">
-                <p className="commentDate">{new Date(comment.createdAt).toLocaleString()}</p>
                 <p className="userName">{user.firstName} {user.lastName} says:</p>
+
+                <p className="commentDate">{new Date(comment.createdAt).toLocaleString()}</p>
                 <p>{comment.content}</p>
+
+                <h1>{localStorage.getItem("user") == comment.userId && <div className="optionButton commentOptionsButton" onClick={() => { setShowOptions(true) }}>&#8942; </div>} </h1>
+
                 <Likes commentId={comment.id} postId={comment.postId} />
             </div>
         </>

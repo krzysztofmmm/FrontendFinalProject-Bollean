@@ -19,6 +19,14 @@ function CommentList({ post }) {
         comments.unshift(comment)
         setComments([...comments])
     }
+
+    const DeleteComment = (comment) => {
+        console.log("Delete comment")
+        comments.splice(comments.indexOf(comment), 1)
+        setComments([...comments])
+    }
+
+
     return (
         <div>
             <AddCommentForm postId={(post.id)} addComment={addComment} />
@@ -27,7 +35,7 @@ function CommentList({ post }) {
                 {
                     comments.map((comment) => {
                         return (
-                            <CommentListItem comment={comment} />
+                            <CommentListItem comment={comment} DeleteComment={DeleteComment} comments={comments} setComments={setComments} />
                         )
                     })
                 }

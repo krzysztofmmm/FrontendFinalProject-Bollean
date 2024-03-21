@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { postContext } from "../Layout/Homepage";
+import "../Stylesheets/Filters.css";
+
 
 function FilterPosts() {
   const { setFilter, setSortBy } = useContext(postContext);
@@ -15,8 +17,9 @@ function FilterPosts() {
   };
 
   return (
-    <div>
+    <div className="filters">
       <input
+        className="searchBar"
         type="text"
         placeholder="Search posts..."
         value={searchTerm}

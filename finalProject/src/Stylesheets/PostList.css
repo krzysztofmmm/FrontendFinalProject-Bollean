@@ -11,6 +11,9 @@
 }
 
 .selectedPost {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 60px 80px 20px;
     position: relative;
     background-color: white;
     border: 1px solid black;
@@ -42,6 +45,11 @@
     font-size: 12px;
     font-weight: 600;
     position: absolute;
+}
+
+.selectedPostAuthor {
+    position: relative;
+    bottom: 15px
 }
 
 .postTitle {
@@ -88,9 +96,9 @@
     z-index: 1;
     position: absolute;
     text-align: center;
-    top: 100px;
+    top: Y;
     width: 100px;
-    right: 0px;
+    right: 0;
 }
 
 .options p {

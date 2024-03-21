@@ -70,7 +70,7 @@ function CreatePost(userId, title, content) {
 }
 
 function GetUserById(userId) {
-    return fetch(`${URL}/users/${userId}`).then((response) => { return response.json() })
+    return fetch(`${URL}/users/${userId}`).then((response) => { if (response.ok) return response.json(); else { console.log(response); return { firstName: "Unknown" } } })
 }
 
 function GetPostsByUser(userId) {
