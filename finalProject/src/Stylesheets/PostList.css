@@ -63,6 +63,14 @@
     width: 22vw;
 }
 
+.like img {
+    width: 20px;
+}
+
+.like {
+    width: fit-content;
+    height: fit-content;
+}
 
 
 

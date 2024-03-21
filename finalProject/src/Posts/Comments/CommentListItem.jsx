@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { GetUserById } from "../../Services/ConnectToDB"
+import Likes from "../Likes"
 
 function CommentListItem({ comment }) {
 
@@ -19,6 +20,7 @@ function CommentListItem({ comment }) {
         <div className="comment">
             <p className="userName">{user.firstName} {user.lastName} says:</p>
             <p>{comment.content}</p>
+            <Likes commentId={comment.id} postId={comment.postId} />
         </div>
 
     )

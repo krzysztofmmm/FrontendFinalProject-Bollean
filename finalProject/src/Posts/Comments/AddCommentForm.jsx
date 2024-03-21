@@ -1,16 +1,19 @@
 import { useContext, useState } from "react"
 import { userContext } from "../../App"
 import { CreateComment } from "../../Services/ConnectToDB"
+import { postContext } from "../../Layout/Homepage"
 
 function AddCommentForm({ postId, addComment }) {
     const [isActive, setIsActive] = useState(false)
     const [content, setContent] = useState("")
     const { user } = useContext(userContext)
+    const { posts, setPosts } = useContext(postContext)
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setIsActive(false)
+        if (!content) return;
         CreateComment(user.id, postId, content)
             .then((response) => {
                 addComment(response)

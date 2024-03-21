@@ -10,7 +10,11 @@ function UserPosts({ userId }) {
 
     return (
         <div>
-            <h1>Their thoughts</h1>
+            {localStorage.getItem("user") == userId &&
+                <h1>Your thoughts</h1>}
+            {localStorage.getItem("user") != userId &&
+                <h1>Their thoughts</h1>}
+
             <div className="userPostList">
 
                 {posts.map((post) => {
